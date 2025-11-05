@@ -38,14 +38,14 @@ pipeline {
 }
 
         stage('Run Flask App') {
-            steps {
-                echo "🚀 Starting Flask app..."
-                sh '''
-                    source venv/bin/activate
-                    nohup python app.py &
-                '''
-            }
-        }
+    steps {
+        echo "🚀 Starting Flask app..."
+        bat '''
+            call venv\\Scripts\\activate
+            start /B python app.py
+        '''
+    }
+}
 
         stage('Optional: Docker Build') {
             when {
