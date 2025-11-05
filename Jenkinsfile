@@ -19,8 +19,8 @@ pipeline {
         echo "🐍 Setting up virtualenv..."
         bat '''
             python -m venv venv
+            call venv\\Scripts\\python.exe -m pip install --upgrade pip
             call venv\\Scripts\\activate
-            pip install --upgrade pip
             pip install -r requirements.txt
         '''
     }
