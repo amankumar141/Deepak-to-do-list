@@ -47,16 +47,6 @@ pipeline {
     }
 }
 
-        stage('Optional: Docker Build') {
-            when {
-                expression { fileExists('Dockerfile') }
-            }
-            steps {
-                echo "🐳 Building Docker image..."
-                sh '''
-                    docker build -t flask-todo .
-                '''
-            }
         }
     }
 
