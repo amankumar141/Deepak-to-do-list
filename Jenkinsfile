@@ -15,27 +15,27 @@ pipeline {
         }
 
         stage('Setup Python Environment') {
-            steps {
-                echo "🐍 Setting up virtualenv..."
-                sh '''
-                    python3 -m venv venv
-                    source venv/bin/activate
-                    pip install --upgrade pip
-                    pip install -r requirements.txt
-                '''
-            }
-        }
+    steps {
+        echo "🐍 Setting up virtualenv..."
+        bat '''
+            python -m venv venv
+            call venv\\Scripts\\activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+        '''
+    }
+}
+
 
         stage('Run Tests') {
-            steps {
-                echo "🧪 Running tests..."
-                // Add your test script here if available
-                sh '''
-                    source venv/bin/activate
-                    echo "No tests yet, skipping..."
-                '''
-            }
-        }
+    steps {
+        echo "🧪 Running tests..."
+        bat '''
+            call venv\\Scripts\\activate
+            python -m unittest discover -s . -p "test_*.py"
+        '''
+    }
+}
 
         stage('Run Flask App') {
             steps {
